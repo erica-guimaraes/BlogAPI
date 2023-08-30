@@ -4,7 +4,7 @@ const createToken = (payload) => {
   const secret = process.env.JWT_SECRET;
   const options = {
     expiresIn: '8h',
-    algorithm: 'RS256',
+    algorithm: 'HS256',
   };
   return jwt.sign(payload, secret, options);
 };
