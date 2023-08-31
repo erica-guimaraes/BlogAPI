@@ -7,6 +7,6 @@ const httpErrorMap = {
   UNAUTHORIZED: 401,
 };
 
-const mapStatusHTTP = (status) => httpErrorMap[status];
+const mapStatusHTTP = (status) => httpErrorMap[status] || 500;
 
 module.exports = mapStatusHTTP;
