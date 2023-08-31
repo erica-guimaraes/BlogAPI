@@ -13,7 +13,7 @@ const createUser = async (user) => {
   }
   const emailExists = await getUserEmail(user.email);
   if (emailExists) {
-    return { status: 'CONFLICT', data: { message: 'User already registered' }};
+    return { status: 'CONFLICT', data: { message: 'User already registered' } };
   }
   const newUser = await User.create(user);
   const userPassword = {
