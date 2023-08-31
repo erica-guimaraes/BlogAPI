@@ -17,8 +17,14 @@ const createUser = async (req, res) => {
   res.status(mapStatusHTTP(status)).json(data);
 };
 
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (_req, res) => {
   const { status, data } = await usersService.getAllUsers();
+  res.status(mapStatusHTTP(status)).json(data);
+};
+
+const getUserId = async (req, res) => {
+  const userId = req.params.id;
+  const { status, data } = await usersService.getUserId(userId);
   res.status(mapStatusHTTP(status)).json(data);
 };
 
@@ -26,4 +32,5 @@ module.exports = {
   login,
   createUser,
   getAllUsers,
+  getUserId,
 };
