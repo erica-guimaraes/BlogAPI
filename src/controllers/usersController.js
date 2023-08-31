@@ -1,15 +1,6 @@
-const jwt = require('jsonwebtoken');
 const { usersService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
-
-const createToken = (payload) => {
-  const secret = process.env.JWT_SECRET;
-  const options = {
-    expiresIn: '8h',
-    algorithm: 'HS256',
-  };
-  return jwt.sign(payload, secret, options);
-};
+const { createToken } = require('../utils/token');
 
 const login = async (req, res) => {
   const token = createToken(req.user);
@@ -26,7 +17,13 @@ const createUser = async (req, res) => {
   res.status(mapStatusHTTP(status)).json(data);
 };
 
+const getAllUsers = async (req, res) => {
+  const { status, data } = await usersService.getAllUsers();
+  res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   login,
   createUser,
+  getAllUsers,
 };
