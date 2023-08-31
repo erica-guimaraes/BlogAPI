@@ -1,4 +1,4 @@
-// const { Category } = require('../models');
+const { Category } = require('../models');
 
 const createCategorie = async (id, name) => { 
   if (!name) {
@@ -7,6 +7,12 @@ const createCategorie = async (id, name) => {
   return { status: 'CREATED', data: { id, name } };
 };
 
+const getAllCategories = async () => {
+  const categories = await Category.findAll();
+  return { status: 'SUCCESSFUL', data: categories };
+};
+
 module.exports = {
   createCategorie,
+  getAllCategories,
 };
